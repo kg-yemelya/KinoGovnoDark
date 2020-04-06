@@ -1,0 +1,932 @@
+/* ==UserStyle==
+@name           KG-Portal Night / Kino-govno: The Dark Side of Drisney
+@description    KG-portal.ru theme for dim environments / Тёмная тема КГ для негробабок-шахтёрок, колящих уголь в ночную смену
+@namespace      yemelya
+@version        1.0.0
+@author         Yemelya (https://github.com/kg-yemelya)
+@homepageURL    https://github.com/kg-yemelya/KinoGovnoDark
+@updateURL      https://github.com/kg-yemelya/KinoGovnoDark/master/KinoGovnoDark.user.css
+@supportURL     https://github.com/kg-yemelya/KinoGovnoDark/issues
+@license        unlicense
+@preprocessor   stylus
+
+
+@var            checkbox    dimmedPics      "Затемнять картинки не под курсором"    1
+@var            checkbox    antiMichelle    "Анти-Судаков"                          0
+==/UserStyle== */
+
+@-moz-document domain("kg-portal.ru") {
+  /* SCROLLBAR */
+  html {
+    scrollbar-color: #009d76 #0f0f0f; /* csslint allow: known-properties */
+  }
+
+  body::-webkit-scrollbar-track {
+    background-color: #0f0f0f;
+  }
+
+  body::-webkit-scrollbar-thumb {
+    background-color: #009d76;
+  }
+
+  /* FONT */
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
+    font-variant-ligatures: discretionary-ligatures;
+  }
+
+  /* BODY COLOURS */
+  body,
+  .news_topcomment a {
+    background-color: #000;
+    color: #8b9b85;
+  }
+
+  /* Global positioning */
+  body,
+  .footer_wrap {
+    position: relative;
+  }
+
+  /* Product placement sponsored by The Dolt Whisney Co. */
+  @css {
+    body::before { /* csslint allow: order-alphabetical */
+      content: '';
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      position: absolute;
+      background: #000;
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MjUgMzg5Ij4KCTxwYXRoIGlkPSJNaWNrZXkiIGZpbGw9IiMwMDgyNEUiIGQ9Ik0yNi4xLDM5MGMtMC45LDAtMS43LTAuNi0xLjktMS41Yy0yLjEtNy41LTAuOC0xNi42LDAuNC0yNS40YzEtNy42LDItMTQuNywwLjYtMTkuNAoJCWMtMS4yLTQuMS00LjItOC40LTcuMy0xMi44Yy0zLjctNS40LTcuNi0xMC45LTkuNC0xNy40Yy0zLjgtMTMuOCwwLTI5LjIsOS44LTM5LjJjOC43LTguOCwyMC42LTEyLjIsMzIuNy05LjEKCQljMC4xLDAsMC4yLDAuMSwwLjMsMC4xbDEwLjgsNWMxNS4xLTM3LDQwLjItNjcuNiw2OS4yLTg0LjVsLTguOS04LjljLTAuMi0wLjItMC4zLTAuNC0wLjQtMC42Yy0xLjYtMy41LTMuNS02LjctNS41LTEwLjIKCQljLTMuNi02LjEtNy4zLTEyLjQtOS4zLTIwLjRjLTYuNC0yNS41LTItNTIsMTIuOS03Ni40YzExLjQtMTguOSwyOC44LTM2LjIsNDcuOC00Ny42YzguMS00LjksMTYuNi02LjgsMjUuNi04LjgKCQljNi43LTEuNSwxMy41LTMuMSwyMC43LTUuOWMwLjItMC4xLDAuNS0wLjEsMC43LTAuMWMzMC44LTAuMiw1OC4zLDExLjksNzUuNSwzMy41YzE2LjEsMjAuMiwyMS4zLDQ2LjksMTQuNiw3NS4yCgkJYy0zLjksMTYuNC0xMS41LDI4LjMtMTguOSwzOS45Yy0zLjgsNS45LTcuNCwxMS41LTEwLjUsMTcuN2MzMS4xLDcuNyw2MC44LDM1LjYsNzcsNTcuN2MwLDAsMC4xLDAuMSwwLjEsMC4xbDExLjcsMTguNQoJCWMtMy4xLTI4LjYsMi01NC43LDE1LTc1LjhjMTIuNy0yMC43LDMyLjYtMzUuOSw1Ni00Mi45YzIyLjItNi42LDQ1LjktNS4zLDY2LjcsMy43YzIyLjgsOS45LDQwLjYsMjguMSw1MS41LDUyLjkKCQljOS44LDIyLjIsMTMuNCw0OC4xLDEwLjIsNzIuN2MtMy4yLDI0LjUtMTIuOSw0Ni45LTI3LjQsNjMuMmMtMjQuMywyNy40LTU5LjQsMzUuNy05OC44LDIzLjZjLTIyLjQtNi45LTMzLjUtMjAuMS00NS4xLTM0LjEKCQljLTIuOC0zLjMtNS42LTYuNy04LjYtMTBjMi4yLDMxLjcsMCw2MS4xLTYuNCw4NS42Yy0wLjMsMS4xLTEuNCwxLjctMi40LDEuNGMtMS4xLTAuMy0xLjctMS40LTEuNC0yLjRjNi43LTI1LjUsOC43LTU2LjYsNS44LTg5LjkKCQljLTAuMS0wLjgsMC40LTEuNiwxLjItMmMwLjgtMC40LDEuNy0wLjIsMi4zLDAuNGM0LjcsNC44LDguNyw5LjcsMTIuNywxNC40YzExLjgsMTQuMSwyMiwyNi4zLDQzLjIsMzIuOAoJCWMzNy44LDExLjYsNzEuNCwzLjcsOTQuNi0yMi41YzI5LjMtMzMsMzYuMS04Ny4xLDE2LjUtMTMxLjdjLTIzLjYtNTMuNS03NS4zLTY1LjYtMTEzLjMtNTQuM2MtMzguNCwxMS40LTc4LjksNTAuNi02Ni45LDEyMy4zCgkJYzAuMiwwLjktMC40LDEuOS0xLjMsMi4yYy0wLjksMC4zLTEuOSwwLTIuNC0wLjhsLTE2LjYtMjYuMmMtMTcuNi0yMy44LTQ4LjItNTAuNS03Ny4xLTU2LjdjLTAuNi0wLjEtMS4xLTAuNS0xLjQtMS4xCgkJcy0wLjMtMS4yLDAtMS43YzMuNC03LjMsNy43LTEzLjksMTEuOC0yMC40YzcuMi0xMS4zLDE0LjctMjIuOSwxOC40LTM4LjdjNi40LTI3LjEsMS41LTUyLjYtMTMuOC03MS44CgkJQzI3MS4xLDIyLjYsMjQ1LjEsMTEsMjE1LjksMTFjLTAuMiwwLTAuMywwLTAuNSwwYy03LjMsMi45LTE0LjIsNC41LTIwLjksNmMtOC43LDItMTYuOSwzLjgtMjQuNSw4LjQKCQljLTI2LjcsMTYtNzMuMyw2MS42LTU4LjgsMTE5LjZjMS45LDcuNCw1LjQsMTMuNSw4LjgsMTkuM2MxLjksMy4zLDMuOSw2LjcsNS42LDEwLjJsMTAuNSwxMC41YzAuNCwwLjQsMC43LDEuMSwwLjYsMS43CgkJcy0wLjUsMS4yLTEsMS41Yy0yOS44LDE2LjQtNTUuNSw0Ny43LTcwLjYsODUuN2MtMC4yLDAuNS0wLjYsMC45LTEuMSwxLjFjLTAuNSwwLjItMS4xLDAuMi0xLjYsMGwtMTIuNi01LjgKCQljLTEwLjctMi42LTIxLjEsMC4zLTI4LjcsOGMtOC44LDktMTIuMywyMi45LTguOCwzNS4zYzEuNiw1LjgsNS4zLDExLjEsOC44LDE2LjJjMy4zLDQuNyw2LjQsOS4yLDcuOCwxNAoJCWMxLjYsNS41LDAuNiwxMy4xLTAuNSwyMS4xYy0xLjIsOC40LTIuMywxNy4xLTAuNSwyMy44YzAuMywxLjEtMC4zLDIuMi0xLjQsMi41QzI2LjQsMzkwLDI2LjIsMzkwLDI2LjEsMzkweiIvPgo8L3N2Zz4=");
+      background-attachment: fixed;
+      background-position: 100% 100%;
+      background-repeat: no-repeat;
+      background-size: 200px;
+    }
+  }
+
+  if antiMichelle {
+    /* Remove the jumbotron on top of the page */
+    div.ten_topbar + div:not(.ten_ears_wrap) {
+      display: none;
+    }
+
+    /* Remove the injected sidebar content */
+    div.content_side>div.section_menu+style+div:not(.widget_list) {
+      display: none;
+    }
+  }
+
+  /* Adjust the post-top content positioning */
+  .ten_ears_wrap {
+    margin-bottom: 30px;
+    padding-top: 55px;
+  }
+
+  @media screen and (min-width: 820px) and (max-width: 1199px) {
+    .ten_ears_wrap {
+      padding-top: 200px;
+      margin-bottom: 130px;
+    }
+  }
+
+  @media screen and (min-width: 1200px) {
+    .ten_ears_wrap {
+      padding-top: 170px;
+      margin-bottom: 140px;
+    }
+  }
+
+  .ten_ears_wrap a {
+    transition: .4s;
+  }
+  if dimmedPics {
+    .ten_ears_wrap a {
+      opacity: .6;
+    }
+  }
+
+  .ten_ears_wrap a:hover,
+  .ten_ears_wrap a:focus {
+    opacity: 1;
+  }
+
+  .ten_ears_wrap a span {
+    background-color: #2c2c2c;
+    border-top: 3px solid #bbb;
+    color: #aaa;
+  }
+
+  .ten_ears_wrap a:hover span,
+  .ten_ears_wrap a:focus span {
+    border-color: #009d76;
+  }
+
+  /* Main wrapper */
+  div.content_wrap {
+    display: flex;
+  }
+
+  /* Main container positioning */
+  div.content_main {
+    order: 2;
+  }
+
+  /* Main container background */
+  div.content_wrap div.content_main.content_news_cards,
+  .pagination {
+    background-color: #111;
+  }
+
+  /* Main container card shadows */
+  .content_main.content_news_cards .news_card_link:hover,
+  .content_main.content_news_cards .news_card_link:focus {
+    box-shadow: 0 2px 12px #5ac18260;
+  }
+
+  /* CRUTCH: Gallery main container fix */
+  .content_wrap.is-gallery-only .content_main {
+    border-right: 0;
+    max-width: none;
+  }
+
+  /* Main container huyaptive design */
+  @media (min-width: 820px) and (max-width: 1199px) {
+    .content_wrap .content_main {
+      border-left: 1px dashed #009d76;
+      border-right: 1px dashed #009d76;
+      max-width: 818px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .content_wrap .content_main {
+      border-right: 1px dashed #009d76;
+      max-width: 819px;
+    }
+  }
+
+  /* Sidebar background */
+  div.content_wrap div.content_side,
+  div.content_wrap {
+    background-color: #1a1a1a;
+    background-image: none;
+  }
+
+  /* Sidebar widgets */
+  .widget_list {
+    margin-top: 0;
+  }
+
+  .widget_list,
+  .widget_list .item {
+    background-color: #1a1a1a;
+    color: #999;
+  }
+
+  .widget_list .header {
+    background: #0d2620;
+    background-image: linear-gradient(#153e34, #1a1a1a);
+    color: #ccc;
+  }
+
+  div.content_side .column_header {
+    color: #51a278;
+    border-bottom-color: #345949;
+  }
+
+  .widget_list .section~.section {
+    border-top: 1px dashed #aaa;
+  }
+
+  .widget_list .item a,
+  .widget_list .b-more {
+    color: #9ab38b;
+  }
+
+  .widget_list .b-more {
+    border: 1px dashed #51a278;
+  }
+
+  .widget_list .item a:hover,
+  .widget_list .item a:focus {
+    color: #5c9c5c;
+    text-decoration: underline;
+  }
+
+  .widget_list .b-more:hover,
+  .widget_list .b-more:focus {
+    background-color: #51a278;
+    border-style: solid;
+    color: #fff;
+  }
+
+  .widget_list .item .b-expand b {
+    filter: invert(1);
+    user-select: none;
+  }
+
+  .widget_list .item.active .b-expand b {
+    filter: none;
+  }
+
+  .widget_list .item.active {
+    background: #000;
+    box-shadow: inset 0 0 0 1px rgba(140, 255, 219, .3);
+  }
+
+  .widget_list .item .tag+.tag {
+    color: #dbdbdb;
+  }
+
+  .content_side .column_dashed {
+    color: #009d76;
+    border-bottom-color: #009d76;
+  }
+
+  .content_side .blist li .counter {
+    color: #8a8;
+    background-color: #000;
+  }
+
+  .content_side .blist a:link {
+    color: #5f8a7c;
+  }
+
+  .content_side .blist a:visited {
+    color: #765b88;
+  }
+
+  .content_side .blist a:hover,
+  .content_side .blist a:focus {
+    text-decoration: underline;
+  }
+
+  /* Sidebar donation box */
+  .dress_donate {
+    background-color: #000;
+    color: #aaa;
+  }
+
+  .dress_donate .sum_input {
+    color: #ddd;
+    border: 1px solid #009d76;
+    background-color: #1a1a1a;
+  }
+
+  .dress_donate .note a {
+    color: #86bb86;
+  }
+
+  .dress_donate .note a:visited {
+    color: #ac43ac;
+  }
+
+  .dress_donate .note a:hover,
+  .dress_donate .note a:focus {
+    text-decoration: underline;
+  }
+
+  /* Sidebar gallery */
+  .content_side .gallery_section .title {
+    color: #999;
+  }
+
+  .content_side .gallery_section a .image {
+    transition: .4s;
+  }
+  if dimmedPics {
+    .content_side .gallery_section a .image {
+      opacity: .5;
+    }
+  }
+
+  .content_side .gallery_section a:hover .image {
+    opacity: 1;
+  }
+
+  /* Post settings button */
+  .b_news_settings_toggle {
+    background-color: #2d8663;
+    color: #ddd;
+  }
+
+  .b_news_settings_toggle .atlas {
+    background-position: -338px -326px;
+  }
+
+  /* Post categories row */
+  .uni_header a:link,
+  .uni_header a:visited {
+    color: #ddd;
+  }
+
+  .uni_header a:not(.active):hover,
+  .uni_header a:not(.active):focus,
+  .uni_filter a:not(.active):hover,
+  .uni_filter a:not(.active):focus {
+    text-decoration: underline;
+  }
+
+  .uni_top_tv .uni_header a.active,
+  .uni_top_tv .uni_header a.active:hover,
+  .uni_top_tv .uni_filter a,
+  .uni_top_tv .uni_filter a:hover,
+  .uni_player.tv h3 b,
+  .uni_player.tv h3 a,
+  .uni_player.tv h3 a:hover,
+  .uni_player.tv .output b,
+  .uni_player.tv .output b a,
+  .uni_player.tv .output b a:hover,
+  .tv_cat .news_footer .tags .list a {
+    color: #a16de8;
+  }
+
+  .uni_top_blogs .uni_header h1,
+  .uni_top_blogs .uni_header h2,
+  .uni_top_blogs .uni_header h3,
+  .uni_top_blogs .uni_header a.active,
+  .uni_top_blogs .uni_header a.active:hover,
+  .uni_top_blogs .uni_header a,
+  .uni_top_blogs .uni_header a:visited,
+  .uni_top_blogs .uni_filter a,
+  .uni_top_blogs .uni_filter a:hover,
+  .uni_top_blogs .uni_filter a.active,
+  .uni_top_blogs .uni_filter a.active:hover,
+  .uni_player.blogs h3 b,
+  .uni_player.blogs h3 a,
+  .uni_player.blogs h3 a:hover,
+  .uni_player.blogs .output b,
+  .uni_player.blogs .output b a,
+  .uni_player.blogs .output b a:hover,
+  .blogs_cat .news_footer .tags .list a {
+    color: #282300;
+  }
+
+  /* Main content background */
+  div.content_news_cards div.news_box,
+  div.content_wrap div.content_main,
+  .news_footer .comments a,
+  .uni_panels {
+    background-color: #000;
+  }
+
+  .podcasts_notice {
+    background: #1a0c00;
+    color: #999;
+  }
+
+  .podcasts_notice .hd {
+    color: #999;
+  }
+
+  /* Post titles color */
+  .news_title {
+    color: #8eac96;
+  }
+
+  .games_cat .news_title {
+    color: #ac9f8e;
+  }
+
+  .tv_cat .news_title {
+    color: #948eac;
+  }
+
+  .anime_cat .news_title {
+    color: #ac8ea5;
+  }
+
+  ._cat .news_title {
+    color: #8ea6ac;
+  }
+
+  /* Post image dimmer */
+  .news_cover_center {
+    transition: 1s ease-in;
+  }
+  if dimmedPics {
+    .news_cover_center {
+      opacity: 0.5;
+    }
+  }
+
+  .news_box:hover .news_cover_center,
+  .news_box:focus .news_cover_center {
+    opacity: 1;
+  }
+
+  /* Post top comment */
+  .news_topcomment a {
+    border-color: #699f80;
+  }
+
+  .news_topcomment a:hover,
+  .news_topcomment a:focus {
+    background-color: #222;
+  }
+
+  .content_news_cards .news_topcomment .text img {
+    filter: sepia(100%) invert(90%) hue-rotate(300deg);
+  }
+
+  .content_news_cards .news_topcomment a:hover {
+    background: #041a12;
+  }
+
+  /* Post reshare links */
+  .news_footer .sharing {
+    overflow: hidden;
+  }
+
+  /* Global link styles */
+  a:link,
+  .news_footer .comments a,
+  .blue {
+    color: #8eac96;
+  }
+
+  a:visited {
+    color: #347b47;
+  }
+
+  a:hover,
+  a:focus,
+  .blue:hover,
+  .blue:focus {
+    color: #66ca9e;
+  }
+
+  a:active,
+  .blue:active {
+    color: #b6dbc0;
+  }
+
+  /* CRUTCH: post content color override */
+  .news_text[style="font-size: 14px; margin: 0 20px; color: #2c2c2c;"] {
+    color: #999 !important; /* csslint allow: important */
+  }
+
+  .news_text a {
+    text-decoration: underline;
+  }
+
+  .news_text a:visited {
+    color: #9b82a6;
+  }
+
+  .news_text a:hover,
+  .news_text a:focus {
+    text-decoration: underline;
+  }
+
+  .news_cut a {
+    background: #000;
+    text-decoration: none;
+  }
+
+  /* Box office styling */
+  ul.box_office {
+    color: #aaa;
+  }
+
+  .box_office li.head>div {
+    background: #0c1c14;
+    color: #959595;
+  }
+
+  .box_office li>div {
+    border-bottom: 1px dotted #555;
+  }
+
+  .box_office li.row2 {
+    background: #060606;
+  }
+
+  .box_office li.row2>div {
+    border-bottom: 1px dotted #777;
+  }
+
+  .box_office li.new {
+    background: #130f28;
+  }
+
+  .box_office li.new>div {
+    border-bottom: 1px dotted #3b3951;
+  }
+
+  .box_office div.fal.down>span {
+    color: #ff3f12 !important;
+  }
+
+  .box_office div.fal.up>span {
+    color: #21cbff !important;
+  }
+
+  .box_office li>div>a {
+    color: #19b590;
+    text-decoration: none;
+  }
+
+  if antiMichelle {
+    .b_social_normal,
+    .section_social, /* remove KG social pages widget */
+    .section_gamemag, /* remove GAMEMAG iframe */
+    div.content_side .kg_promo, /* remove even more sidebar injections */
+    /*#column_gallery,*/ /* remove sidebar gallery */
+    /*.section-related,*/ /* remove SEO related section */
+    /*div.uni_panels div.podcast_transcript,*/
+    div.uni_panels div.header.center.nosel { /* remove 'Table of contents' header for podcasts */
+      display: none;
+    }
+  }
+
+  /* Header styles for aggregate sections */
+  .uni_top_all .uni_header {
+    background-image: linear-gradient(to bottom, #386fc2, #000);
+  }
+
+  .uni_top_movies .uni_header {
+    background-image: linear-gradient(to bottom, #16b98d, #000);
+  }
+
+  .uni_top_tv .uni_header {
+    background-image: linear-gradient(to bottom, #8652cd, #000);
+  }
+
+  .uni_top_games .uni_header {
+    background-image: linear-gradient(to bottom, #ed5d2b, #000);
+  }
+
+  .uni_top_anime .uni_header {
+    background-image: linear-gradient(to bottom, #cb5bb5, #000);
+  }
+
+  /*
+.uni_top_blogs .uni_header {
+  background-image: linear-gradient(to bottom,#ffdf41,#000);
+}
+*/
+
+  /* Article player controls */
+  .uni_top_all .uni_header a.active,
+  .uni_top_all .uni_header a.active:hover,
+  .uni_top_all .uni_filter a,
+  .uni_top_all .uni_filter a:hover,
+  .uni_player.all h3 b,
+  .uni_player.all h3 a,
+  .uni_player.all h3 a:hover,
+  .uni_player.all .output b,
+  .uni_player.all .output b a,
+  .uni_player.all .output b a:hover,
+  .all_cat .news_footer .tags .list a {
+    color: #7cafe6;
+  }
+
+  .uni_filter a.active,
+  .uni_filter a.active:hover {
+    color: #ccc;
+  }
+
+  .uni_player a {
+    text-decoration: none;
+  }
+
+  .uni_player .tabs>ul,
+  .widget_list .uni_player .tabs>ul {
+    background-color: #222;
+  }
+
+  .uni_player .tabs>ul>li.tab.active,
+  .widget_list .uni_player .tabs>ul>li.tab.active,
+  .pagination a.active,
+  .pagination a.active:hover {
+    background-color: #444;
+  }
+
+  .uni_player .tabs>ul>li>a:not(.donate_patreon):not(.donate_general) {
+    color: #8c5383 !important;
+    filter: invert(1);
+  }
+
+  .uni_player .tabs li.downloads {
+    background-color: #009966;
+  }
+
+  div.uni_panels div.target_patreon {
+    background-color: #1a1a1a;
+    color: #bbb;
+  }
+  if antiMichelle {
+    div.uni_panels div.target_patreon {
+      order: 2; /* move patreon widget to the end of ToC */
+    }
+  }
+
+  .target_patreon .summary {
+    color: #999;
+  }
+
+  .target_patreon a.b_action {
+    background-color: transparent;
+    border: 1px solid #ffd442;
+    color: #ffd442;
+    transition: .4s;
+  }
+
+  .target_patreon a.b_action:hover,
+  .target_patreon a.b_action:focus {
+    border-color: transparent;
+    background-color: #ffd442;
+    color: #000;
+  }
+
+  .uni_panels table.shownotes td:first-child+td {
+    color: #999;
+  }
+
+  @media screen and (min-width: 1200px) {
+    div.uni_panels>.active {
+      overflow-y: auto;
+      max-height: 48vh;
+      display: flex !important;
+      flex-direction: column;
+    }
+
+    div.uni_panels table.shownotes {
+      width: 95%;
+      max-width: none;
+    }
+
+    div.uni_panels table.shownotes td:first-child {
+      width: 10%;
+    }
+  }
+
+  .uni_panels .downloads_wrap a {
+    background: #090f0d;
+  }
+
+  .news_text div.ref {
+    background-color: #2a2a2a;
+    color: #999;
+  }
+
+  /* Article tag list */
+  .news_footer .tags .list a {
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    display: inline;
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size .3s;
+    border: 0;
+    float: none;
+  }
+
+  .news_footer .tags .list a:hover,
+  .news_footer .tags .list a:focus {
+    background-size: 100% 1px;
+  }
+
+  /* Remove advert injection before the comment section */
+  if antiMichelle {
+    .ten_col2_content+div:not(#comments) {
+      display: none;
+    }
+  }
+
+  /* Comments pagination links */
+  .pagination a:visited {
+    background: #111;
+    color: #347b47;
+  }
+
+  .pagination a:hover,
+  .pagination a:focus {
+    background: #333;
+  }
+
+  /* Article comments section */
+  .comments_news {
+    border-top: 1px solid #009d76;
+  }
+
+  ul.comments_list li {
+    border-bottom: 1px dashed #347b47;
+  }
+
+  ul.comments_list .body .spoiler {
+    background: #222;
+    color: #999;
+  }
+
+  ul.comments_list .body .spoiler.show {
+    background: #222;
+    color: #999;
+  }
+
+  .comments_list li.comment .user {
+    color: #68bb8b;
+  }
+
+  .comments_list li.comment .user_name:hover,
+  .comments_list li.comment .user_name:focus {
+    text-decoration: underline;
+  }
+
+  ul.comments_list .avatar img {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+  }
+
+  .karma_actions .karma_plus,
+  .karma_actions .karma_minus {
+    font-size: 24px;
+    padding: 2px 10px 3px 10px;
+  }
+
+  .karma_actions .karma_minus {
+    background-color: #6f6047;
+  }
+
+  .karma_actions .karma_plus {
+    background-color: #465d64;
+  }
+
+  .auth_block {
+    border-top: 1px solid #009d76;
+    color: #aaa;
+  }
+
+  .auth_block h5 {
+    color: #009d76;
+  }
+
+  /* Comment Editor UI */
+  .markItUpHeader .spoiler,
+  .markItUpHeader .bold,
+  .markItUpHeader .italic,
+  .markItUpHeader .strike,
+  .markItUpHeader .img,
+  .markItUpHeader .link,
+  .markItUpHeader .quote {
+    background-position-x: -30px;
+  }
+
+  .markItUpHeader .spoiler:hover,
+  .markItUpHeader .bold:hover,
+  .markItUpHeader .italic:hover,
+  .markItUpHeader .strike:hover,
+  .markItUpHeader .img:hover,
+  .markItUpHeader .link:hover,
+  .markItUpHeader .quote:hover {
+    background-position-x: 0px;
+  }
+
+  .markItUpHeader .helper {
+    color: #ddd;
+  }
+
+  .add_comment textarea {
+    background-color: #111;
+    color: #fff;
+  }
+
+  /* SEO related */
+  .section-related {
+    background-color: #000;
+  }
+
+  .section-related .related-item {
+    background-color: #222;
+    color: #aaa;
+  }
+
+  .section-related .related-item-image {
+    background-color: #000;
+    transition: .4s;
+  }
+  if dimmedPics {
+    .section-related .related-item-image {
+      opacity: 0.5;
+    }
+  }
+
+  .section-related .related-item-caption {
+    color: #aaa;
+  }
+
+  .section-related .related-item:hover .related-item-caption {
+    color: #30eebf;
+  }
+
+  .section-related .related-item:hover .related-item-image {
+    opacity: 1;
+  }
+
+  .alertify-cover {
+    background-color: #000;
+  }
+
+  /* Leaderboards styling */
+  .poll_helper_content {
+    background: #111;
+  }
+
+  .poll_anime .poll_results_kg {
+    background-color: #151415;
+  }
+
+  .poll_next_cat b {
+    text-shadow: 1px 0 6px #000;
+  }
+
+  /* Box office additional styles */
+  .boxmain_movies li {
+    color: #444;
+  }
+
+  .boxmain_movies li:first-child {
+    color: #bbb;
+  }
+
+  .boxmain_gross {
+    color: #999;
+  }
+
+  /* THE GOVNO OF MAMMOTH DESIGN */
+
+  .hotline_tabs td {
+    background: #131313;
+    color: #666;
+  }
+
+  .h2_header {
+    color: #aaa !important;
+  }
+
+  #movies_hd .alternative {
+    border-bottom: 1px dotted #34b084;
+    color: #34b084;
+  }
+
+  #movies_main {
+    background: #000;
+    color: #999;
+  }
+
+  #movies_main a:link {
+    color: #8eac96;
+  }
+
+  #movies_main a:visited {
+    color: #958eac;
+  }
+
+  #movies_main a:hover,
+  #movies_main a:focus {
+    color: #5bdbad;
+    text-decoration: underline;
+  }
+
+  #movies_news span {
+    color: #ea7632;
+  }
+
+  .hotline_tabs b,
+  .hotline_tabs strong {
+    color: #ddd;
+  }
+
+  .content_wrap.is-gallery-only .hotline_tabs~div {
+    background: #000 !important;
+  }
+
+  .listing_item .img[style="background-image: url('/i/gallery/poster_blank.gif')"] {
+    filter: invert(1);
+  }
+
+  .listing_item .img .award.place {
+    background-color: #000;
+    border-color: #fff;
+    color: #fff;
+
+  }
+
+  .listing_item .img[style="background-image: url('/i/gallery/poster_blank.gif')"] .award.place {
+    background-color: #fff;
+    border-color: #000;
+    color: #000;
+  }
+
+  /* Footer images prettifier */
+  .section_friends a:first-of-type img,
+  .section_friends a:last-of-type img {
+    filter: invert(93%) hue-rotate(180deg);
+  }
+}
