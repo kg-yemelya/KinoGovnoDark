@@ -8,7 +8,7 @@
 ## Как это установить
 
 1. Установить расширение Stylus для [Firefox](https://addons.mozilla.org/en-US/firefox/addon/styl-us/), [Chrome](https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne) или [Opera](https://addons.opera.com/en-gb/extensions/details/stylus/).
-2. [Пройти по вот этой ссылке](https://github.com/kg-yemelya/KinoGovnoDark/master/KinoGovnoDark.user.css)
+2. [Пройти по вот этой ссылке](https://github.com/kg-yemelya/KinoGovnoDark/raw/master/KinoGovnoDark.user.css)
 
 ## Как это выглядит
 
