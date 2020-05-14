@@ -690,12 +690,46 @@
   .news_footer .tags .list a:focus {
     background-size: 100% 1px;
   }
+  
+  /* Article related items */
+  
+  .news_related a {
+    background-color: #202020;
+    width: 239px;
+  }
+  
+  .news_related a:hover {
+    background-color: #005540;
+  }
+  
+  .news_related .text {
+    height: 58px;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  
+  .news_related a .text,
+  .news_related a:hover .text,
+  .news_related a:visited .text,
+  .news_related a:active .text {
+    color: #b9b9b9;
+  }
 
   /* Remove advert injection before the comment section */
   if antiMichelle {
     .ten_col2_content+div:not(#comments) {
       display: none;
     }
+  }
+  
+  /* Comments jumper link */
+  .news_commentsjump {
+    background-color: #009d76;
+  }
+  
+  .news_commentsjump:hover,
+  .news_commentsjump:focus {
+    background-color: #00b98b;
   }
 
   /* Comments pagination links */
@@ -735,6 +769,18 @@
   .comments_list li.comment .user_name:hover,
   .comments_list li.comment .user_name:focus {
     text-decoration: underline;
+  }
+  
+  /* sponsor label */
+  ul.comments_list .user a.patreon_user,
+  ul.comments_list .user a.patreon_user:visited {
+    color: #5bbd94;
+    background-color: #2d332f;
+  }
+  
+  ul.comments_list .user a.patreon_user:hover {
+    color: #63ffbe;
+    background-color: #1e683e;
   }
 
   ul.comments_list .avatar img {
