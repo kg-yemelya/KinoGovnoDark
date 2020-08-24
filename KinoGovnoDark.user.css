@@ -2,7 +2,7 @@
 @name           KG-Portal Night / Kino-govno: The Dark Side of Drisney
 @description    KG-portal.ru theme for dim environments / Тёмная тема КГ для негробабок-шахтёрок, колящих уголь в ночную смену
 @namespace      yemelya
-@version        1.0.1
+@version        1.1.0
 @author         Yemelya (https://github.com/kg-yemelya)
 @homepageURL    https://github.com/kg-yemelya/KinoGovnoDark
 @updateURL      https://github.com/kg-yemelya/KinoGovnoDark/raw/master/KinoGovnoDark.user.css
@@ -68,7 +68,7 @@
 
   if antiMichelle {
     /* Remove the jumbotron on top of the page */
-    div.ten_topbar + div:not(.ten_ears_wrap) {
+    .ten_topbar + div:not(.ten_ears_wrap) {
       display: none;
     }
 
@@ -166,6 +166,36 @@
       max-width: 819px;
     }
   }
+  
+  /* JS tooltip */
+
+  #miniTip {
+      background: #1c1c1c;
+      border-color: #009d76;
+      color: #aaa;
+  }
+  
+  #miniTip_t {
+      background-color: #009d76;
+  }
+  
+  #miniTip .s {
+      border-bottom-color: #009d76;
+  }
+  
+  #miniTip .n {
+      border-top-color: #009d76;
+  }
+  
+  #miniTip .w {
+      border-left-color: #009d76;
+  }
+  
+  #miniTip .e {
+      border-right-color: #009d76;
+  }
+  
+  
 
   /* Sidebar background */
   div.content_wrap div.content_side,
@@ -305,6 +335,59 @@
   .content_side .gallery_section a:hover .image {
     opacity: 1;
   }
+  
+  /* Top bar: user widget */
+
+  .menu_userbar .userbar .content {
+      background: #1a1a1a;
+      color: #aaa;
+  }
+  
+  .userbar .section h5 {
+      color: #aaa;
+  }
+  
+  .userbar .section.forum_login .input {
+      background: #000;
+      border-color: #386fc2;
+      color: #fff;
+  }
+  
+  .b_dropdown_close {
+      background: #000;
+  }
+  
+  .b_dropdown_close:hover {
+      background: #300;
+  }
+  
+  /* Top bar: feedback widget */
+
+  .menu_feedback .feedback .content {
+      background: #1a1a1a;
+  }
+  
+  .feedback .section h5 {
+      color: #aaa;
+  }
+  
+  .feedback .input {
+      background: #000;
+      border-color: #386fc2;
+      color: #fff;
+  }
+  
+  /* Top bar: search widget */
+
+  .menu_search input[type="text"]:focus,
+  .menu_search_dropdown input[type="text"]{
+    color: #fff;
+    background-color: #000;
+  }
+  
+  .menu_search_dropdown input[type="submit"] {
+      background-color: #333;
+  }
 
   /* Post settings button */
   .b_news_settings_toggle {
@@ -415,6 +498,36 @@
   .news_box:hover .news_cover_center,
   .news_box:focus .news_cover_center {
     opacity: 1;
+  }
+  
+  /* Post source tooltip */
+  
+  .news_box .news_sources .b_news_sources {
+      filter: brightness(250%);
+  }
+  
+  .news_box .news_sources .b_news_sources:hover,
+  .news_box .news_sources .b_news_sources.active {
+      filter: none;
+      background-color: #009d76;
+  }
+  
+  .news_box .news_sources .container {
+      background-color: #1a1a1a;
+  }
+  
+  .news_box .news_sources .container::before {
+      filter: invert(0.93);
+  }
+  
+  .news_box .news_sources .label {
+      color: #999;
+  }
+  
+  .news_box .news_sources input[type="text"] {
+      background: #000;
+      border-color: #009d76;
+      color: #fff;
   }
 
   /* Post top comment */
@@ -569,6 +682,23 @@
 }
 */
 
+  .article div.item_card.ratings {
+    background: #1a1a1a;
+  }
+  
+  .article div.item_card.ratings .date {
+    color: #aaa;
+  }
+  
+  .article div.item_card.ratings .info b, .article div.item_card.ratings .info strong {
+    color: #a5a5a5;
+  }
+  
+  .article div.item_card.ratings .ratings {
+    background: #080808;
+    color: #999;
+  }
+
   /* Article player controls */
   .uni_top_all .uni_header a.active,
   .uni_top_all .uni_header a.active:hover,
@@ -689,6 +819,10 @@
   .news_footer .tags .list a:hover,
   .news_footer .tags .list a:focus {
     background-size: 100% 1px;
+  }
+  
+  .news_footer .tags .b_expand {
+    filter: invert(100%) hue-rotate(180deg);
   }
   
   /* Article related items */
