@@ -2,7 +2,7 @@
 @name           KG-Portal Night / Kino-govno: The Dark Side of Drisney
 @description    KG-portal.ru theme for dim environments / Тёмная тема КГ для негробабок-шахтёрок, колящих уголь в ночную смену
 @namespace      yemelya
-@version        1.1.0
+@version        1.2.0
 @author         Yemelya (https://github.com/kg-yemelya)
 @homepageURL    https://github.com/kg-yemelya/KinoGovnoDark
 @updateURL      https://github.com/kg-yemelya/KinoGovnoDark/raw/master/KinoGovnoDark.user.css
@@ -162,8 +162,7 @@
 
   @media (min-width: 1200px) {
     .content_wrap .content_main {
-      border-right: 1px dashed #009d76;
-      max-width: 819px;
+      max-width: 820px;
     }
   }
   
@@ -200,7 +199,7 @@
   /* Sidebar background */
   div.content_wrap div.content_side,
   div.content_wrap {
-    background-color: #1a1a1a;
+    background-color: #000;
     background-image: none;
   }
 
@@ -219,11 +218,6 @@
     background: #0d2620;
     background-image: linear-gradient(#153e34, #1a1a1a);
     color: #ccc;
-  }
-
-  div.content_side .column_header {
-    color: #51a278;
-    border-bottom-color: #345949;
   }
 
   .widget_list .section~.section {
@@ -273,6 +267,16 @@
   .content_side .column_dashed {
     color: #009d76;
     border-bottom-color: #009d76;
+  }
+  
+  div.content_side .column_header {
+    background: #0d2620;
+    background-image: linear-gradient(#153e34, #1a1a1a);
+    color: #ccc;
+  }
+  
+  .content_side .blist {
+      background-color: #141414;
   }
 
   .content_side .blist li .counter {
@@ -534,10 +538,20 @@
   .news_topcomment a {
     border-color: #699f80;
   }
+  
+  .news_topcomment .text *,
+  .news_topcomment .text {
+    color: #666;
+  }
 
   .news_topcomment a:hover,
   .news_topcomment a:focus {
-    background-color: #222;
+    background-color: #0d261d;
+  }
+  
+  .news_topcomment a:hover .text *,
+  .news_topcomment a:hover .text {
+    color: #eee;
   }
 
   .content_news_cards .news_topcomment .text img {
@@ -854,6 +868,41 @@
     .ten_col2_content+div:not(#comments) {
       display: none;
     }
+  }
+  
+  .news-extras.social {
+      background-color: #0c1612;
+  }
+  
+  .news-extras.social .array {
+      opacity: .5;
+  }
+  
+  .news-extras-wrap .news-extras.social + .news-extras.social {
+      background-color: #062d1f;
+  }
+  
+  .news-extras.social .lead {
+      color: #ad9f72;
+      background-color: #000;
+  }
+  
+  .news-extras.related.scrollable {
+      background-color: #151515;
+  }
+  
+  .news-extras.related .lead,
+  .news-extras.related.scrollable .lead {
+      color: #7a7a7a;
+      background-color: #000;
+  }
+  
+  .news-extras.related .item,
+  .news-extras.related.scrollable .item,
+  .news-extras.related.scrollable .item div {
+      color: #777;
+      background-color: #222;
+      background-blend-mode: overlay;
   }
   
   /* Comments jumper link */
