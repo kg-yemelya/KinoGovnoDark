@@ -2,7 +2,7 @@
 @name           KG-Portal Night / Kino-govno: The Dark Side of Drisney
 @description    KG-portal.ru theme for dim environments / Тёмная тема КГ для негробабок-шахтёрок, колящих уголь в ночную смену
 @namespace      yemelya
-@version        1.2.0
+@version        1.2.1
 @author         Yemelya (https://github.com/kg-yemelya)
 @homepageURL    https://github.com/kg-yemelya/KinoGovnoDark
 @updateURL      https://github.com/kg-yemelya/KinoGovnoDark/raw/master/KinoGovnoDark.user.css
@@ -868,6 +868,14 @@
     .ten_col2_content+div:not(#comments) {
       display: none;
     }
+  }
+  
+  .news-extras.related {
+      background-color: #0f0e0c;
+  }
+  
+  .news-extras-wrap .news-extras.related + .news-extras.related {
+      background-color: #181512;
   }
   
   .news-extras.social {
